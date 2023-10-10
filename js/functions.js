@@ -1,6 +1,6 @@
 const checkLengthString = function (string, maxLength) {
   if (typeof string === 'string') {
-    let result = string.length <= maxLength;
+    const result = string.length <= maxLength;
     {
       return result;
     }
