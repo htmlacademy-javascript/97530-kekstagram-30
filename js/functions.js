@@ -20,7 +20,9 @@ const checkPolindrom = (string) => {
     newString = result.at(i);
     str = str + newString;
   }
-  return str === result;
+  {
+    return str === result;
+  }
 }
 
 checkPolindrom('Лёша на полке клопа нашёл');
