@@ -1,8 +1,9 @@
-let checkLengthString = function  (string, maxLength) {
+const checkLengthString = function (string, maxLength) {
   if (typeof string === 'string') {
-      let result = string.length <= maxLength;
-      console.log(result)
+    let result = string.length <= maxLength;
+    {
       return result;
+    }
   }
 }
 
@@ -16,8 +17,8 @@ const checkPolindrom = (string) => {
   let str = newString;
 
   for (let i = result.length - 1; i >= 0; i--) {
-      newString = result.at(i);
-      str = str + `${newString}`;
+    newString = result.at(i);
+    str = str + newString;
   }
   return str === result;
 }
