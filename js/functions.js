@@ -5,7 +5,7 @@ const checkLengthString = function (string, maxLength) {
       return result;
     }
   }
-}
+};
 
 checkLengthString ('проверяемая строка', 10);
 
@@ -23,6 +23,6 @@ const checkPolindrom = (string) => {
   {
     return str === result;
   }
-}
+};
 
 checkPolindrom('Лёша на полке клопа нашёл');
