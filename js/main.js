@@ -1,12 +1,3 @@
-const getRandomInteger = function (a, b) {
-  const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
-  const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
-  const result = Math.random() * (upper - lower + 1) + lower;
-  return Math.floor(result);
-};
-
-const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
-
 const ID = {
   MIN: 1,
   MAX: 25,
@@ -41,24 +32,35 @@ const COMMENTS = {
   MAX: 30,
 };
 
-const comments = ['Всё отлично!', 'В целом всё неплохо. Но не всё.'];
+const ANNOTATES = ['Всё отлично!', 'В целом всё неплохо. Но не всё.', 'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.', 'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
+'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.', 'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'];
 
-const names = ['Феврония', 'Рафаэль', 'Роза', 'Даниил', 'Захар', 'Диана', 'Малина'];
+const NAMES = ['Феврония', 'Рафаэль', 'Роза', 'Даниил', 'Захар', 'Диана', 'Малина'];
+
+// Функция, создающая случайное число
+const getRandomInteger = function (a, b) {
+  const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
+  const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
+  const result = Math.random() * (upper - lower + 1) + lower;
+  return Math.floor(result);
+};
+
+const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
 // Функция, создающая уникальный ID
 function createRandomIdFromRangeGenerator (min, max) {
   const previousValues = [];
 
   return function () {
-    let currentValue = getRandomInteger(min, max);
-    if (previousValues.length >= (max - min + 1)) {
-      return null;
-    }
-    while (previousValues.includes(currentValue)) {
-      currentValue = getRandomInteger(min, max);
-    }
-    previousValues.push(currentValue);
-    return currentValue;
+      let currentValue = getRandomInteger(min, max);
+      if (previousValues.length >= (max - min + 1)) {
+          return null;
+      }
+      while (previousValues.includes(currentValue)) {
+          currentValue = getRandomInteger(min, max);
+      }
+      previousValues.push(currentValue);
+      return currentValue;
   };
 }
 
@@ -68,25 +70,25 @@ const generateNumber = createRandomIdFromRangeGenerator(NUMBER.MIN, NUMBER.MAX);
 
 // Количество объектов
 const SIMILAR_PHOTOS_COUNT = 25;
-const SIMILAR_COMMENT_COUNT = getRandomInteger(COMMENTS.MIN, COMMENTS.MAX);
 
-const createComment = function () {
+const createMockDates = function () {
   return {
-    id: generateNumber(),
-    avatar: `img/avatar-${getRandomInteger(AVATARS.MIN, AVATARS.MAX)}.svg`,
-    message: getRandomArrayElement(comments),
-    name: getRandomArrayElement(names),
+      id: generateNumber(),
+      avatar: `img/avatar-${getRandomInteger(AVATARS.MIN, AVATARS.MAX)}.svg`,
+      message: getRandomArrayElement(ANNOTATES),
+      name: getRandomArrayElement(NAMES),
   };
 };
 
-const similarComment = new Array(SIMILAR_COMMENT_COUNT).fill(null).map((element, index) => createComment(index));
-
-const createPhoto = function () {
+const createMockPictures = function () {
   return {
-    id: generateId(),
-    url:  `photos/${generatePhotoId()}.jpg`,
-    descriprion: getRandomArrayElement(DESCRIPTIONS),
-    likes: getRandomInteger(LIKES.MIN, LIKES.MAX),
-    comments: similarComment,
+      id: generateId(),
+      url: `photos/${generatePhotoId()}.jpg`,
+      description: getRandomArrayElement(DESCRIPTIONS),
+      likes: getRandomInteger(LIKES.MIN, LIKES.MAX),
+      comments: Array.from({length: getRandomInteger(COMMENTS.MIN, COMMENTS.MAX)}, createMockDates),
   };
 };
+
+const similarMockPicture = new Array(SIMILAR_PHOTOS_COUNT).fill(null).map((element, index) => createMockPictures(index));
+console.log(similarMockPicture);
