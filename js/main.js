@@ -33,7 +33,7 @@ const COMMENTS = {
 };
 
 const ANNOTATES = ['Всё отлично!', 'В целом всё неплохо. Но не всё.', 'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.', 'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
-'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.', 'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'];
+  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.', 'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'];
 
 const NAMES = ['Феврония', 'Рафаэль', 'Роза', 'Даниил', 'Захар', 'Диана', 'Малина'];
 
@@ -52,15 +52,15 @@ function createRandomIdFromRangeGenerator (min, max) {
   const previousValues = [];
 
   return function () {
-      let currentValue = getRandomInteger(min, max);
-      if (previousValues.length >= (max - min + 1)) {
-          return null;
-      }
-      while (previousValues.includes(currentValue)) {
-          currentValue = getRandomInteger(min, max);
-      }
-      previousValues.push(currentValue);
-      return currentValue;
+    let currentValue = getRandomInteger(min, max);
+    if (previousValues.length >= (max - min + 1)) {
+      return null;
+    }
+    while (previousValues.includes(currentValue)) {
+      currentValue = getRandomInteger(min, max);
+    }
+    previousValues.push(currentValue);
+    return currentValue;
   };
 }
 
@@ -73,22 +73,21 @@ const SIMILAR_PHOTOS_COUNT = 25;
 
 const createMockDates = function () {
   return {
-      id: generateNumber(),
-      avatar: `img/avatar-${getRandomInteger(AVATARS.MIN, AVATARS.MAX)}.svg`,
-      message: getRandomArrayElement(ANNOTATES),
-      name: getRandomArrayElement(NAMES),
+  id: generateNumber(),
+  avatar: `img/avatar-${getRandomInteger(AVATARS.MIN, AVATARS.MAX)}.svg`,
+  message: getRandomArrayElement(ANNOTATES),
+  name: getRandomArrayElement(NAMES),
   };
 };
 
 const createMockPictures = function () {
   return {
-      id: generateId(),
-      url: `photos/${generatePhotoId()}.jpg`,
-      description: getRandomArrayElement(DESCRIPTIONS),
-      likes: getRandomInteger(LIKES.MIN, LIKES.MAX),
-      comments: Array.from({length: getRandomInteger(COMMENTS.MIN, COMMENTS.MAX)}, createMockDates),
+  id: generateId(),
+  url: `photos/${generatePhotoId()}.jpg`,
+  description: getRandomArrayElement(DESCRIPTIONS),
+  likes: getRandomInteger(LIKES.MIN, LIKES.MAX),
+  comments: Array.from({length: getRandomInteger(COMMENTS.MIN, COMMENTS.MAX)}, createMockDates),
   };
 };
 
 const similarMockPicture = new Array(SIMILAR_PHOTOS_COUNT).fill(null).map((element, index) => createMockPictures(index));
-console.log(similarMockPicture);
