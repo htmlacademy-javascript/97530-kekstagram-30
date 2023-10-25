@@ -90,5 +90,3 @@ const createPhoto = function () {
     comments: similarComment,
   };
 };
-
-const similarAds = new Array(SIMILAR_PHOTOS_COUNT).fill(null).map((element, index) => createPhoto(index));
