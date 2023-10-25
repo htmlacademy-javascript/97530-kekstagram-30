@@ -10,7 +10,7 @@ const getRandomArrayElement = (elements) => elements[getRandomInteger(0, element
 const ID = {
   MIN: 1,
   MAX: 25,
-}
+};
 
 const AUTHORS = {
   MIN: 1,
@@ -20,31 +20,31 @@ const AUTHORS = {
 const PHOTOS = {
   MIN: 1,
   MAX: 25,
-}
+};
 
 const NUMBER = {
   MIN: 1,
   MAX: 200,
-}
+};
 
 const DESCRIPTIONS = ['В кафе на морском берегу', 'Рассвет на море на восточном побережье полуострова Ситония - солнце всходит над горой Афон',
-'Закат на море - безусловно, тоже великолепное и вдохновляющее зрелище!', 'Жизнь никогда не будет прежней после этого блюда',
-'Творчество бывает разным... у меня оно выглядит так']
+  'Закат на море - безусловно, тоже великолепное и вдохновляющее зрелище!', 'Жизнь никогда не будет прежней после этого блюда',
+  'Творчество бывает разным... у меня оно выглядит так']
 
 const LIKES = {
   MIN: 15,
   MAX: 200,
-}
+};
 
 const AVATARS = {
   MIN: 1,
   MAX: 6,
-}
+};
 
 const COMMENTS = {
   MIN: 0,
   MAX: 30,
-}
+};
 
 const comments = ['Всё отлично!', 'В целом всё неплохо. Но не всё.'];
 
@@ -55,15 +55,15 @@ function createRandomIdFromRangeGenerator (min, max) {
   const previousValues = [];
 
   return function () {
-      let currentValue = getRandomInteger(min, max);
-      if (previousValues.length >= (max - min + 1)) {
-          return null;
-      }
-      while (previousValues.includes(currentValue)) {
-          currentValue = getRandomInteger(min, max);
-      }
-      previousValues.push(currentValue);
-      return currentValue;
+    let currentValue = getRandomInteger(min, max);
+    if (previousValues.length >= (max - min + 1)) {
+      return null;
+    }
+    while (previousValues.includes(currentValue)) {
+      currentValue = getRandomInteger(min, max);
+    }
+    previousValues.push(currentValue);
+    return currentValue;
   };
 }
 
@@ -71,39 +71,30 @@ const generateId = createRandomIdFromRangeGenerator(ID.MIN, ID.MAX);
 const generatePhotoId = createRandomIdFromRangeGenerator(PHOTOS.MIN, PHOTOS.MAX);
 const generateNumber = createRandomIdFromRangeGenerator(NUMBER.MIN, NUMBER.MAX);
 
-// Функция, создающая аватар пользователя
-const getPathOfAuthorsAvatar = function (elem) {
-  if (elem === AUTHORS.MAX - 1) {
-      return elem + 1;
-  }
-  return `${elem + 1}`;
-};
-
-
 // Количество объектов
 const SIMILAR_PHOTOS_COUNT = 25;
 const SIMILAR_COMMENT_COUNT = getRandomInteger(COMMENTS.MIN, COMMENTS.MAX);
 
-const createCom = function (result) {
+const createComment = function () {
   return {
-      id: generateNumber(),
-      avatar: `img/avatar-${getRandomInteger(AVATARS.MIN, AVATARS.MAX)}.svg`,
-      message: getRandomArrayElement(comments),
-      name: getRandomArrayElement(names),
-    }
-}
+    id: generateNumber(),
+    avatar: `img/avatar-${getRandomInteger(AVATARS.MIN, AVATARS.MAX)}.svg`,
+    message: getRandomArrayElement(comments),
+    name: getRandomArrayElement(names),
+    };
+};
 
- const similarCom = new Array(SIMILAR_COMMENT_COUNT).fill(null).map((element, index) => createCom(index));
+  const similarComment = new Array(SIMILAR_COMMENT_COUNT).fill(null).map((element, index) => createComment(index));
 
-const createPhoto = function (result) {
+const createPhoto = function () {
   return {
     id: generateId(),
     url:  `photos/${generatePhotoId()}.jpg`,
     descriprion: getRandomArrayElement(DESCRIPTIONS),
     likes: getRandomInteger(LIKES.MIN, LIKES.MAX),
-    comments: similarCom,
-  }
-}
+    comments: similarComment,
+  };
+};
 
 const similarAds = new Array(SIMILAR_PHOTOS_COUNT).fill(null).map((element, index) => createPhoto(index));
 
