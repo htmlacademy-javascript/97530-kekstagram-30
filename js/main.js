@@ -12,11 +12,6 @@ const ID = {
   MAX: 25,
 };
 
-const AUTHORS = {
-  MIN: 1,
-  MAX: 25,
-};
-
 const PHOTOS = {
   MIN: 1,
   MAX: 25,
@@ -29,7 +24,7 @@ const NUMBER = {
 
 const DESCRIPTIONS = ['В кафе на морском берегу', 'Рассвет на море на восточном побережье полуострова Ситония - солнце всходит над горой Афон',
   'Закат на море - безусловно, тоже великолепное и вдохновляющее зрелище!', 'Жизнь никогда не будет прежней после этого блюда',
-  'Творчество бывает разным... у меня оно выглядит так']
+  'Творчество бывает разным... у меня оно выглядит так'];
 
 const LIKES = {
   MIN: 15,
@@ -81,10 +76,10 @@ const createComment = function () {
     avatar: `img/avatar-${getRandomInteger(AVATARS.MIN, AVATARS.MAX)}.svg`,
     message: getRandomArrayElement(comments),
     name: getRandomArrayElement(names),
-    };
+  };
 };
 
-  const similarComment = new Array(SIMILAR_COMMENT_COUNT).fill(null).map((element, index) => createComment(index));
+const similarComment = new Array(SIMILAR_COMMENT_COUNT).fill(null).map((element, index) => createComment(index));
 
 const createPhoto = function () {
   return {
@@ -97,5 +92,3 @@ const createPhoto = function () {
 };
 
 const similarAds = new Array(SIMILAR_PHOTOS_COUNT).fill(null).map((element, index) => createPhoto(index));
-
-console.log(similarAds);
