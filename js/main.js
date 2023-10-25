@@ -73,20 +73,20 @@ const SIMILAR_PHOTOS_COUNT = 25;
 
 const createMockDates = function () {
   return {
-  id: generateNumber(),
-  avatar: `img/avatar-${getRandomInteger(AVATARS.MIN, AVATARS.MAX)}.svg`,
-  message: getRandomArrayElement(ANNOTATES),
-  name: getRandomArrayElement(NAMES),
+    id: generateNumber(),
+    avatar: `img/avatar-${getRandomInteger(AVATARS.MIN, AVATARS.MAX)}.svg`,
+    message: getRandomArrayElement(ANNOTATES),
+    name: getRandomArrayElement(NAMES),
   };
 };
 
 const createMockPictures = function () {
   return {
-  id: generateId(),
-  url: `photos/${generatePhotoId()}.jpg`,
-  description: getRandomArrayElement(DESCRIPTIONS),
-  likes: getRandomInteger(LIKES.MIN, LIKES.MAX),
-  comments: Array.from({length: getRandomInteger(COMMENTS.MIN, COMMENTS.MAX)}, createMockDates),
+    id: generateId(),
+    url: `photos/${generatePhotoId()}.jpg`,
+    description: getRandomArrayElement(DESCRIPTIONS),
+    likes: getRandomInteger(LIKES.MIN, LIKES.MAX),
+    comments: Array.from({length: getRandomInteger(COMMENTS.MIN, COMMENTS.MAX)}, createMockDates),
   };
 };
 
