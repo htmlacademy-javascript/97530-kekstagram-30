@@ -56,7 +56,7 @@ function createIdGenerator () {
   };
 }
 
-const generateId = createIdGenerator(NUMBER.MIN, NUMBER.MAX);
+const generateId = createIdGenerator(ID.MIN, ID.MAX);
 const generatePhotoId = createIdGenerator(PHOTOS.MIN, PHOTOS.MAX);
 const generateNumber = createIdGenerator(NUMBER.MIN, NUMBER.MAX);
 
