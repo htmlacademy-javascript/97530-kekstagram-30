@@ -1,18 +1,3 @@
-const ID = {
-  MIN: 1,
-  MAX: 25,
-};
-
-const PHOTOS = {
-  MIN: 1,
-  MAX: 25,
-};
-
-const NUMBER = {
-  MIN: 1,
-  MAX: 200,
-};
-
 const DESCRIPTIONS = ['В кафе на морском берегу', 'Рассвет на море на восточном побережье полуострова Ситония - солнце всходит над горой Афон',
   'Закат на море - безусловно, тоже великолепное и вдохновляющее зрелище!', 'Жизнь никогда не будет прежней после этого блюда',
   'Творчество бывает разным... у меня оно выглядит так'];
@@ -56,9 +41,9 @@ function createIdGenerator () {
   };
 }
 
-const generateId = createIdGenerator(ID.MIN, ID.MAX);
-const generatePhotoId = createIdGenerator(PHOTOS.MIN, PHOTOS.MAX);
-const generateNumber = createIdGenerator(NUMBER.MIN, NUMBER.MAX);
+const generateId = createIdGenerator();
+const generatePhotoId = createIdGenerator();
+const generateNumber = createIdGenerator();
 
 // Количество объектов
 const SIMILAR_PHOTOS_COUNT = 25;
