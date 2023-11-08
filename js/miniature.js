@@ -10,17 +10,17 @@ const similarPicsFragment = document.createDocumentFragment();
 
 const generateRandomUsersPics = () => {
 
-similarPics.forEach(({url, description, likes, comments}) => {
-  const picElement = similarPictureTemplate.cloneNode(true);
+  similarPics.forEach(({url, description, likes, comments}) => {
+    const picElement = similarPictureTemplate.cloneNode(true);
 
-  picElement.querySelector('.picture__img').src = url;
-  picElement.querySelector('.picture__img').alt = description;
-  picElement.querySelector('.picture__likes').textContent = likes;
-  picElement.querySelector('.picture__comments').textContent = comments.length;
+    picElement.querySelector('.picture__img').src = url;
+    picElement.querySelector('.picture__img').alt = description;
+    picElement.querySelector('.picture__likes').textContent = likes;
+    picElement.querySelector('.picture__comments').textContent = comments.length;
 
-  similarPicsFragment.append(picElement);
-});
+    similarPicsFragment.append(picElement);
+  });
   otherPicOfUsers.append(similarPicsFragment);
-}
+};
 
 export { generateRandomUsersPics };

@@ -21,4 +21,4 @@ const comments = ['Всё отлично!', 'В целом всё неплохо
 
 const names = ['Феврония', 'Рафаэль', 'Роза', 'Даниил', 'Захар', 'Диана', 'Малина'];
 
-export { DESCRIPTIONS, LIKES, AVATARS, COMMENTS, comments, names }
+export { DESCRIPTIONS, LIKES, AVATARS, COMMENTS, comments, names };
