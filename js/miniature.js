@@ -1,4 +1,4 @@
-import { createPhotos } from './data.js';
+import { createPhotos } from './mock.js';
 
 const similarPictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const otherPicOfUsers = document.querySelector('.pictures');
