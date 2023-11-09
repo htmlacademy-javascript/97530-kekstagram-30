@@ -1,4 +1,4 @@
-import './util.js';
-import './data.js';
-import { createPhotos } from './data.js';
+import { createPhotos } from './mock.js';
+import { generateRandomUsersPics } from './miniature.js';
 createPhotos();
+generateRandomUsersPics();
