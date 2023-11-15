@@ -15,7 +15,6 @@ const renderGallery = (pictures) => {
     const picElementId = +picElem.dataset.picelementId;
     const pictureData = pictures.find(({ id }) => id === picElementId);
     showPicture(pictureData);
-
   });
 
   generateRandomUsersPics(pictures, container);
