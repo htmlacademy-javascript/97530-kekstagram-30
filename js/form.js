@@ -16,11 +16,15 @@ const closeImgButtonElement = formLoadImg.querySelector('.img-upload__cancel');
 const hashtagField = formLoadImg.querySelector('.text__hashtags');
 const commentField = formLoadImg.querySelector('.text__description');
 
-const pristine = new Pristine(formLoadImg, {
-  classTo: 'img-upload__field-wrapper',
-  errorTextParent: 'img-upload__field-wrapper',
-  errorTextClass: 'img-upload__field-wrapper--error',
-});
+const pristine = new Pristine
+(formLoadImg,
+  {
+    classTo: 'img-upload__field-wrapper',
+    errorTextParent: 'img-upload__field-wrapper',
+    errorTextClass: 'img-upload__field-wrapper--error',
+  },
+  false
+);
 
 const showForm = () => {
   overlayUploadImg.classList.remove('hidden');
