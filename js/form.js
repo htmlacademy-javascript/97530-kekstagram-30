@@ -1,4 +1,6 @@
 import { isEscapeKey } from './util.js';
+import { init as initEffect, reset as resetEffect } from './slider.js';
+import { resetScale } from './scale.js';
 
 const HASHTAG_REGEXP = /^#[a-za-яё0-9]{1,19}$/i;
 const HASHTAG_COUNT = 5;
@@ -34,6 +36,8 @@ const showForm = () => {
 
 const hideForm = () => {
   formLoadImg.reset();
+  resetScale();
+  resetEffect();
   pristine.reset();
   overlayUploadImg.classList.add('hidden');
   bodyElement.classList.remove('modal-open');
@@ -114,3 +118,4 @@ pristine.addValidator(
 inputUploadImg.addEventListener('change', onInputUploadImg);
 closeImgButtonElement.addEventListener('click', onFormButtonClickClose);
 formLoadImg.addEventListener('submit', onFormSubmit);
+initEffect();
