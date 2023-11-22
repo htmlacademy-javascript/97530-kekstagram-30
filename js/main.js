@@ -1,4 +1,15 @@
-import { createPhotos } from './mock.js';
 import { renderGallery } from './gallery.js';
 import './form.js';
-renderGallery(createPhotos());
+import { loadPictures } from './api.js';
+import { showErrorMessage } from './util.js';
+
+async function bootstrap() {
+  try {
+    const pictures = await loadPictures();
+    renderGallery(pictures);
+  } catch (error) {
+    showErrorMessage();
+  }
+}
+
+bootstrap();
