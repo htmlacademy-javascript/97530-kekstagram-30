@@ -1,25 +1,18 @@
-// Функция, создающая случайное число
-const getRandomInteger = function (a, b) {
-  const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
-  const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
-  const result = Math.random() * (upper - lower + 1) + lower;
-  return Math.floor(result);
-};
-
-const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
-
-// Функция, создающая уникальный ID
-function createIdGenerator () {
-  let lastGeneratedId = 0;
-
-  return function () {
-    lastGeneratedId += 1;
-    return lastGeneratedId;
-  };
-}
-
-// Функция, проверяющая нажатие клавиши
-
+const REMOVE_ERROR_MESSAGE = 5000;
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export { getRandomInteger, getRandomArrayElement, createIdGenerator, isEscapeKey };
+
+const errorMessageTemplate = document.querySelector('#data-error')
+  .content
+  .querySelector('.data-error');
+
+const showErrorMessage = () => {
+  const errorElement = errorMessageTemplate.cloneNode(true);
+  document.body.append(errorElement);
+
+  setTimeout(() => {
+    errorElement.remove();
+  }, REMOVE_ERROR_MESSAGE);
+};
+
+export { isEscapeKey, showErrorMessage };
