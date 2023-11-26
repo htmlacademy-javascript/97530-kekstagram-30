@@ -6,6 +6,7 @@ import { openSuccesMessage, openErrorMessage } from './message.js';
 
 const HASHTAG_REGEXP = /^#[a-za-яё0-9]{1,19}$/i;
 const HASHTAG_COUNT = 5;
+const FILE_TYPES = ['jpeg', 'jpg', 'png'];
 const errors = {
   INVALID_COUNT: `Допустимо ${HASHTAG_COUNT} хэштегов`,
   NOT_REPEAT: 'Хэштеги не должны повторяться',
@@ -25,6 +26,9 @@ const closeImgButtonElement = formLoadImg.querySelector('.img-upload__cancel');
 const hashtagField = formLoadImg.querySelector('.text__hashtags');
 const commentField = formLoadImg.querySelector('.text__description');
 const submitButton = formLoadImg.querySelector('.img-upload__submit');
+//const fileField = formLoadImg.querySelector('.img-upload__input');
+const loadPic = formLoadImg.querySelector('.img-upload__preview img');
+const effectsPreview = formLoadImg.querySelectorAll('.effects__preview');
 
 const toggleSubmitButton = (isDisabled) => {
   submitButton.disabled = isDisabled;
@@ -47,6 +51,11 @@ const showForm = () => {
   overlayUploadImg.classList.remove('hidden');
   bodyElement.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeydown);
+};
+
+const isValidType = (file) => {
+  const fileName = file.name.toLowerCase();
+  return FILE_TYPES.some((it) => fileName.endsWith(it));
 };
 
 const hideForm = () => {
@@ -99,7 +108,15 @@ const onFormButtonClickClose = () => {
   hideForm();
 };
 
-const onInputUploadImg = () => {
+const onFileInputChange = () =>{
+  const file = inputUploadImg.files[0];
+
+  if (file && isValidType(file)) {
+    loadPic.src = URL.createObjectURL(file);
+    effectsPreview.forEach((index) => {
+      index.style.backgroundImage = `url(${loadPic.src})`;
+    });
+  }
   showForm();
 };
 
@@ -150,7 +167,7 @@ pristine.addValidator(
   true
 );
 
-inputUploadImg.addEventListener('change', onInputUploadImg);
+inputUploadImg.addEventListener('change', onFileInputChange);
 closeImgButtonElement.addEventListener('click', onFormButtonClickClose);
 formLoadImg.addEventListener('submit', onFormSubmit);
 initEffect();
