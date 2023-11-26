@@ -15,4 +15,30 @@ const showErrorMessage = () => {
   }, REMOVE_ERROR_MESSAGE);
 };
 
-export { isEscapeKey, showErrorMessage };
+const getRandomInteger = function (a, b) {
+  const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
+  const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
+  const result = Math.random() * (upper - lower + 1) + lower;
+  return Math.floor(result);
+};
+
+function createUniqueItem () {
+  let lastUniqueItem = 0;
+
+  return function () {
+    lastUniqueItem += 1;
+    return lastUniqueItem;
+  };
+}
+
+function debounce (callback, timeoutDelay = 500) {
+  let timeoutId;
+
+  return (...rest) => {
+    clearTimeout(timeoutId);
+
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+}
+
+export { isEscapeKey, showErrorMessage, getRandomInteger, createUniqueItem, debounce };
