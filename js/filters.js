@@ -1,8 +1,9 @@
 import { renderGallery } from './gallery.js';
 import { debounce } from './util.js';
 
-const filterElement = document.querySelector('.img-filters');
 const MAX_RANDOM_FILTER = 10;
+
+const filterElement = document.querySelector('.img-filters');
 const filterForm = document.querySelector('.img-filters__form');
 const defaultBtn = filterForm.querySelector('#filter-default');
 const randomBtn = filterForm.querySelector('#filter-random');
