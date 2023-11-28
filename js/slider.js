@@ -64,7 +64,7 @@ const effectToSliderOptions = {
 };
 
 const modalElement = document.querySelector('.img-upload');
-const imageElement = modalElement.querySelector('.img-upload__preview');
+const imageElement = modalElement.querySelector('.img-upload__preview img');
 const effectsElement = modalElement.querySelector('.effects');
 const sliderElement = modalElement.querySelector('.effect-level__slider');
 const sliderElementContainer = modalElement.querySelector('.img-upload__effect-level');
