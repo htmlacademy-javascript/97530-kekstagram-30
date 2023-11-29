@@ -4,12 +4,11 @@ const COMMENTS_COUNT_SHOW = 5;
 
 const bigPictureElement = document.querySelector('.big-picture');
 const bodyElement = document.querySelector('body');
-const closePictureButtonElement = bigPictureElement.querySelector('.big-picture__cancel');
-
-const commentListElement = bigPictureElement.querySelector('.social__comments');
-const commentCountElement = bigPictureElement.querySelector('.social__comment-shown-count');
-const totalCommentCountElement = bigPictureElement.querySelector('.social__comment-total-count');
-const commentsloaderElement = bigPictureElement.querySelector('.comments-loader');
+const btnCancelElement = bigPictureElement.querySelector('.big-picture__cancel');
+const socialCommentsElement = bigPictureElement.querySelector('.social__comments');
+const socialCommentsCountElement = bigPictureElement.querySelector('.social__comment-shown-count');
+const socialCommentsTotalElement = bigPictureElement.querySelector('.social__comment-total-count');
+const socialCommentsloaderElement = bigPictureElement.querySelector('.comments-loader');
 
 const commentElement = document
   .querySelector('#comment')
@@ -33,10 +32,10 @@ const renderComments = () => {
   commentsCountShown += COMMENTS_COUNT_SHOW;
 
   if (commentsCountShown >= comments.length) {
-    commentsloaderElement.classList.add('hidden');
+    socialCommentsloaderElement.classList.add('hidden');
     commentsCountShown = comments.length;
   } else {
-    commentsloaderElement.classList.remove('hidden');
+    socialCommentsloaderElement.classList.remove('hidden');
   }
 
   const fragment = document.createDocumentFragment();
@@ -45,11 +44,11 @@ const renderComments = () => {
     fragment.append(comment);
   }
 
-  commentListElement.innerHTML = '';
-  commentListElement.append(fragment);
+  socialCommentsElement.innerHTML = '';
+  socialCommentsElement.append(fragment);
 
-  commentCountElement.textContent = commentsCountShown;
-  totalCommentCountElement.textContent = comments.length;
+  socialCommentsCountElement.textContent = commentsCountShown;
+  socialCommentsTotalElement.textContent = comments.length;
 };
 
 const onCommentsLoaderClick = () => renderComments();
@@ -92,7 +91,7 @@ const showPicture = (pictureData) => {
   renderPicture(pictureData);
 };
 
-closePictureButtonElement.addEventListener('click', onClosePictureButtonClick);
-commentsloaderElement.addEventListener('click', onCommentsLoaderClick);
+btnCancelElement.addEventListener('click', onClosePictureButtonClick);
+socialCommentsloaderElement.addEventListener('click', onCommentsLoaderClick);
 
 export { showPicture };

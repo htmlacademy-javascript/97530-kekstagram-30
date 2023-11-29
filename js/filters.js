@@ -21,18 +21,18 @@ const filterHandlers = {
   [filterEnum.DEFAULT]: (data) => data,
 
   [filterEnum.RANDOM]: (data) => {
-    const randomIndexList = [];
+    const randomIndexes = [];
 
     const max = Math.min(MAX_RANDOM_FILTER, data.length);
 
-    while(randomIndexList.length < max) {
+    while(randomIndexes.length < max) {
       const randomIndex = getRandomIndex(0, data.length);
 
-      if(!randomIndexList.includes(randomIndex)) {
-        randomIndexList.push(randomIndex);
+      if(!randomIndexes.includes(randomIndex)) {
+        randomIndexes.push(randomIndex);
       }
     }
-    return randomIndexList.map((index) => data[index]);
+    return randomIndexes.map((index) => data[index]);
   },
 
   [filterEnum.DISCUSSED]: (data) =>

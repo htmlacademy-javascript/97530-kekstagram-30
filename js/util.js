@@ -1,7 +1,6 @@
 const REMOVE_ERROR_MESSAGE = 5000;
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-
 const errorMessageTemplate = document.querySelector('#data-error')
   .content
   .querySelector('.data-error');
@@ -22,16 +21,16 @@ const getRandomInteger = function (a, b) {
   return Math.floor(result);
 };
 
-function createUniqueItem () {
+const createUniqueItem = () => {
   let lastUniqueItem = 0;
 
   return function () {
     lastUniqueItem += 1;
     return lastUniqueItem;
   };
-}
+};
 
-function debounce (callback, timeoutDelay = 500) {
+const debounce = (callback, timeoutDelay = 500) => {
   let timeoutId;
 
   return (...rest) => {
@@ -39,6 +38,6 @@ function debounce (callback, timeoutDelay = 500) {
 
     timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
   };
-}
+};
 
 export { isEscapeKey, showErrorMessage, getRandomInteger, createUniqueItem, debounce };
