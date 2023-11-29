@@ -142,31 +142,35 @@ const onFormSubmit = (evt) => {
   sendForm(evt.target);
 };
 
-pristine.addValidator(
-  hashtagFieldElement,
-  hasValidCount,
-  errors.INVALID_COUNT,
-  3,
-  true
-);
+const initForm = () => {
+  pristine.addValidator(
+    hashtagFieldElement,
+    hasValidCount,
+    errors.INVALID_COUNT,
+    3,
+    true
+  );
 
-pristine.addValidator(
-  hashtagFieldElement,
-  hasUniqueTags,
-  errors.NOT_REPEAT,
-  2,
-  true
-);
+  pristine.addValidator(
+    hashtagFieldElement,
+    hasUniqueTags,
+    errors.NOT_REPEAT,
+    2,
+    true
+  );
 
-pristine.addValidator(
-  hashtagFieldElement,
-  hasValidTags,
-  errors.INVALID_PATTERN,
-  1,
-  true
-);
+  pristine.addValidator(
+    hashtagFieldElement,
+    hasValidTags,
+    errors.INVALID_PATTERN,
+    1,
+    true
+  );
 
-imgUploadInputElement.addEventListener('change', onFileInputChange);
-btnCancelElement.addEventListener('click', onFormButtonClickClose);
-imgUploadFormElement.addEventListener('submit', onFormSubmit);
-initEffect();
+  imgUploadInputElement.addEventListener('change', onFileInputChange);
+  btnCancelElement.addEventListener('click', onFormButtonClickClose);
+  imgUploadFormElement.addEventListener('submit', onFormSubmit);
+  initEffect();
+};
+
+export { initForm };
