@@ -19,26 +19,25 @@ const SubmitButtonTitle = {
 };
 
 const bodyElement = document.querySelector('body');
-const formLoadImg = document.querySelector('.img-upload__form');
-const overlayUploadImg = formLoadImg.querySelector('.img-upload__overlay');
-const inputUploadImg = formLoadImg.querySelector('.img-upload__input');
-const closeImgButtonElement = formLoadImg.querySelector('.img-upload__cancel');
-const hashtagField = formLoadImg.querySelector('.text__hashtags');
-const commentField = formLoadImg.querySelector('.text__description');
-const submitButton = formLoadImg.querySelector('.img-upload__submit');
-//const fileField = formLoadImg.querySelector('.img-upload__input');
-const loadPic = formLoadImg.querySelector('.img-upload__preview img');
-const effectsPreview = formLoadImg.querySelectorAll('.effects__preview');
+const imgUploadFormElement = document.querySelector('.img-upload__form');
+const imgUploadOverlayElement = imgUploadFormElement.querySelector('.img-upload__overlay');
+const imgUploadInputElement = imgUploadFormElement.querySelector('.img-upload__input');
+const imgUploadPreviewElement = imgUploadFormElement.querySelector('.img-upload__preview img');
+const btnCancelElement = imgUploadFormElement.querySelector('.img-upload__cancel');
+const btnSubmitElement = imgUploadFormElement.querySelector('.img-upload__submit');
+const hashtagFieldElement = imgUploadFormElement.querySelector('.text__hashtags');
+const textFieldElement = imgUploadFormElement.querySelector('.text__description');
+const effectsPreviewElement = imgUploadFormElement.querySelectorAll('.effects__preview');
 
 const toggleSubmitButton = (isDisabled) => {
-  submitButton.disabled = isDisabled;
-  submitButton.textContent = isDisabled
+  btnSubmitElement.disabled = isDisabled;
+  btnSubmitElement.textContent = isDisabled
     ? SubmitButtonTitle.SUBMITTING
     : SubmitButtonTitle.PUBLISH;
 };
 
 const pristine = new Pristine
-(formLoadImg,
+(imgUploadFormElement,
   {
     classTo: 'img-upload__field-wrapper',
     errorTextParent: 'img-upload__field-wrapper',
@@ -48,7 +47,7 @@ const pristine = new Pristine
 );
 
 const showForm = () => {
-  overlayUploadImg.classList.remove('hidden');
+  imgUploadOverlayElement.classList.remove('hidden');
   bodyElement.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeydown);
 };
@@ -59,20 +58,20 @@ const isValidType = (file) => {
 };
 
 const hideForm = () => {
-  formLoadImg.reset();
+  imgUploadFormElement.reset();
   resetScale();
   resetEffect();
   pristine.reset();
-  overlayUploadImg.classList.add('hidden');
+  imgUploadOverlayElement.classList.add('hidden');
   bodyElement.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
 };
 
 const isFieldFocused = () =>
-  document.activeElement === hashtagField ||
-  document.activeElement === commentField;
+  document.activeElement === hashtagFieldElement ||
+  document.activeElement === textFieldElement;
 
-formLoadImg.addEventListener('submit', (evt) => {
+imgUploadFormElement.addEventListener('submit', (evt) => {
   evt.preventDefault();
 });
 
@@ -109,12 +108,12 @@ const onFormButtonClickClose = () => {
 };
 
 const onFileInputChange = () =>{
-  const file = inputUploadImg.files[0];
+  const file = imgUploadInputElement.files[0];
 
   if (file && isValidType(file)) {
-    loadPic.src = URL.createObjectURL(file);
-    effectsPreview.forEach((index) => {
-      index.style.backgroundImage = `url(${loadPic.src})`;
+    imgUploadPreviewElement.src = URL.createObjectURL(file);
+    effectsPreviewElement.forEach((element) => {
+      element.style.backgroundImage = `url(${imgUploadPreviewElement.src})`;
     });
   }
   showForm();
@@ -144,7 +143,7 @@ const onFormSubmit = (evt) => {
 };
 
 pristine.addValidator(
-  hashtagField,
+  hashtagFieldElement,
   hasValidCount,
   errors.INVALID_COUNT,
   3,
@@ -152,7 +151,7 @@ pristine.addValidator(
 );
 
 pristine.addValidator(
-  hashtagField,
+  hashtagFieldElement,
   hasUniqueTags,
   errors.NOT_REPEAT,
   2,
@@ -160,14 +159,14 @@ pristine.addValidator(
 );
 
 pristine.addValidator(
-  hashtagField,
+  hashtagFieldElement,
   hasValidTags,
   errors.INVALID_PATTERN,
   1,
   true
 );
 
-inputUploadImg.addEventListener('change', onFileInputChange);
-closeImgButtonElement.addEventListener('click', onFormButtonClickClose);
-formLoadImg.addEventListener('submit', onFormSubmit);
+imgUploadInputElement.addEventListener('change', onFileInputChange);
+btnCancelElement.addEventListener('click', onFormButtonClickClose);
+imgUploadFormElement.addEventListener('submit', onFormSubmit);
 initEffect();

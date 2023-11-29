@@ -1,14 +1,14 @@
-const similarPictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
-const container = document.querySelector('.pictures');
-const hiddenElem = container.querySelector('.visually-hidden');
-hiddenElem.classList.remove('visually-hidden');
+const similarPictureTemplateElement = document.querySelector('#picture').content.querySelector('.picture');
+const containerElement = document.querySelector('.pictures');
+const hiddenElement = containerElement.querySelector('.visually-hidden');
+hiddenElement.classList.remove('visually-hidden');
 
 const similarPicsFragment = document.createDocumentFragment();
 
 const generateRandomUsersPics = (pictures) => {
 
   pictures.forEach(({url, description, likes, comments, id}) => {
-    const picElement = similarPictureTemplate.cloneNode(true);
+    const picElement = similarPictureTemplateElement.cloneNode(true);
 
     picElement.querySelector('.picture__img').src = url;
     picElement.querySelector('.picture__img').alt = description;
@@ -18,7 +18,7 @@ const generateRandomUsersPics = (pictures) => {
 
     similarPicsFragment.append(picElement);
   });
-  container.append(similarPicsFragment);
+  containerElement.append(similarPicsFragment);
 };
 
 export { generateRandomUsersPics };
